@@ -1,599 +1,707 @@
-@layer fonts {
-  /* lora-regular - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/lora-v37-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-
-@layer components {
-  .menu-grid-section {
-    padding: 2rem 0 4rem; /* remove side padding so we can extend to viewport edges */
-  }
-
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px 10px; /* row-gap 6px, column-gap 10px to bring rows closer */
-    max-width: 1110px; /* center the grid and keep uniform tile sizing */
-      width: 100vw;
-      height: calc(var(--hero-video-h, clamp(360px, 45vh, 520px)) + 30px);
-      /* push the video down slightly so it does not overlap the buttons */
-      --hero-video-top: var(--hero-video-top, clamp(40px, 10vh, 140px));
-      top: calc(var(--hero-video-top, clamp(40px, 10vh, 140px)) - 50px);
-  }
-
-  .menu-tile {
-    position: relative;
-    aspect-ratio: 16 / 7; /* wider rectangle */
-    min-height: clamp(160px, 18vw, 320px);
-    background-size: cover;
-    background-position: center center !important;
-    background-repeat: no-repeat;
-    border: 0; /* remove per-tile borders to ensure equal widths */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-decoration: none;
-    overflow: hidden;
-  }
-
-  .menu-tile::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.62));
-    pointer-events: none;
-  }
-
-  .tile-text {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0.75rem;
-    gap: 6px;
-    height: 100%;
-    width: 100%;
-  }
-
-  .title {
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    font-size: clamp(18px, 2.2vw, 28px);
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-    display: block;
-    margin: 0;
-  }
-
-  .subtitle {
-    font-style: italic;
-    margin: 0;
-    font-size: clamp(12px, 1.6vw, 16px);
-    text-shadow: 0 1px 3px rgba(0,0,0,0.45);
-  }
-
-  .menu-tile:focus { outline: 3px solid var(--c-green-100); outline-offset: 3px; }
-
-  .menu-tile:hover::before,
-  .menu-tile:focus::before {
-    background: rgba(0,0,0,0.62);
-  }
-
-  .menu-tile:active::before,
-  .menu-tile:focus-visible::before {
-    background: rgba(0,0,0,0.72);
-  }
-
-  /* map tiles to images in the repo */
-  .tile-aarambham { background-image: url('/images/aarambham.jpg'); }
-  .tile-amogham { background-image: url('/images/amogham.jpg'); }
-  .tile-ruchikaram { background-image: url('/images/ruchikaram.jpg'); }
-  .tile-ascharyam { background-image: url('/images/asch.jpg'); }
-  .tile-adbhutham { background-image: url('/images/ambhutham.jpg'); }
-  .tile-amrutham { background-image: url('/images/amrut.jpg'); }
-
-  @media (max-width: 800px) {
-    .menu-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 460px) {
-    .menu-grid { grid-template-columns: 1fr; }
-    .menu-tile { border-width: 4px; }
-  }
-}
-/* lora-500 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 500;
-  src: url('/fonts/lora-v37-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* lora-600 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 600;
-  src: url('/fonts/lora-v37-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-/* lora-700 - latin */
-@font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Lora';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/fonts/lora-v37-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-}
-}
-
-@layer colors {
-  :root {
-  --c-yellow-100: #fcc12f;
-  --c-yellow-500: #fdf3da;
-  --c-green-100: #106935;
-  --c-green-500: #91bc66;
-  --c-brown: #6e341b;
-  --c-black: #282727;
+:root {
+  --c-yellow: #d49a00;
+  --c-yellow-dark: #b88600;
+  --c-charcoal: #1a1a1a;
+  --c-charcoal-light: #333333;
+  --c-cream: #fdf8eb;
   --c-white: #ffffff;
-  --color-background-dark: var(--c-green-100);
-  --color-background-light: var(--c-yellow-500);
-  --color-text-light: var(--c-white);
-  --color-text-dark: var(--c-black);
-  }
+  --c-text: #333333;
+  --c-red: #a81c1c;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Outfit', sans-serif;
+  --section-padding: 100px 0;
+  --container-width: 1200px;
 }
 
-@layer typography {
-  :root {
-    --fs-80: calc(80 / 16 * 1rem);
-    --fs-48: calc(48 / 16 * 1rem);
-    --fs-32: calc(32 / 16 * 1rem);
-    --fs-24: calc(24 / 16 * 1rem);
-    --fs-18: calc(18 / 16 * 1rem);
-    --fs-16: calc(16 / 16 * 1rem);
-    --font-size-h1: var(--fs-32);
-    --font-size-h2: var(--fs-32);
-    --font-size-h3: var(--fs-24);
-    --font-size-p: var(--fs-16);
-    --font-size-p-sm: var(--fs-16);
-
-    @media (width >= calc(700 / 16 * 1rem)) {
-      --font-size-h1: var(--fs-48);
-      --font-size-h2: var(--fs-48);
-      --font-sze-p: var(--fs-20);
-    }
-
-    @media (width >= calc(1100 / 16 * 1rem)) {
-      --font-size-h1: var(--fs-80);
-      
-    }
-  }
-
-  h1{
-    font-size: var(--font-size-h1);
-    font-weight: 500;
-    letter-spacing: -0.0125em;
-    line-height: 1;
-    }
-
-  h2{
-    font-size: var(--font-size-h2);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1;
-  }
-  h3{
-    font-size: var(--font-size-h3);
-    font-weight: 500;
-    line-height: calc(24 / 20);
-  }
-
-  p {
-    font-size: var(--font-size-p);
-    font-weight: 400;
-    line-height: calc(28 / 16);
-
-    &.small {
-      font-size: var(--font-size-p-sm);
-    }
-  }
-}
-
-@layer global {
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  /* prevent any accidental horizontal scroll from full-bleed sections */
-  html, body { overflow-x: hidden; }
-
-  body {
+* {
   margin: 0;
-  background: var(--color-background-light);
-  color: var(--color-text-dark);
-  font-family: 'Lora', serif;
-}
-
-  h1, h2, h3 {
-    margin: 0;
-  }
-  p {
-    margin: 0;
-  }
-
-  img {
-    display: block;
-    max-width: 100%;
-  }
-
-/* hero: keep centered but tighten title-to-row spacing */
-.wrapper.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 2rem 1rem;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* much wider spacing between buttons, responsive */
-.location-row {
-  display: flex;
-  gap: clamp(3rem, 10vw, 8rem); /* makes spacing much larger on wide screens */
-  justify-content: center;
-  align-items: center;
-  margin-top: -0.5rem; /* lift row slightly */
-  transform: none;
-  flex-wrap: nowrap;
+html {
+  scroll-behavior: smooth;
 }
 
-/* make images much bigger but responsive, keep aspect ratio */
-.button {
-  position: relative;
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  background: none;
-  border: 0;
-  cursor: pointer;
+body {
+  font-family: var(--font-sans);
+  color: var(--c-text);
+  background-color: var(--c-white);
+  line-height: 1.6;
 }
 
-.location-thumb {
-  width: clamp(260px, 24vw, 520px); /* responsive size - much bigger on desktop */
-  aspect-ratio: 160 / 61;          /* preserves original shape */
-  height: auto;
-  object-fit: cover;
+img {
+  max-width: 100%;
   display: block;
-  border-radius: 6px;
-  filter: brightness(0.55); /* keep darkened so white text reads well */
 }
 
-/* keep overlay text centered */
-.button-label {
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s ease;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 20px 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+nav a {
   color: var(--c-white);
   font-weight: 600;
-  text-align: center;
-  pointer-events: none;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-  white-space: nowrap;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-/* small-screen fallback */
-@media (max-width: 600px) {
-  .location-row { gap: 1rem; flex-wrap: wrap; margin-top: 0; }
-  .location-thumb { width: 160px; aspect-ratio: 160 / 61; }
+nav a:hover {
+  color: var(--c-yellow);
 }
 
-/* Optional stronger overlay behind text for extra contrast */
-.button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  background: rgba(0,0,0,0.18);
-  pointer-events: none;
-}
-/* center the hero title */
-.wrapper.hero h1 {
-  text-align: center;
-  width: 100%;
-  margin: 0;
+/* Buttons */
+.btn-pill {
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
-/* make the hero wrapper a positioned container for absolute media */
-.wrapper.hero {
+.btn-yellow {
+  background-color: var(--c-yellow);
+  color: var(--c-charcoal);
+}
+
+.btn-yellow:hover {
+  background-color: var(--c-white);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline {
+  border-color: var(--c-white);
+  color: var(--c-white);
+}
+
+.btn-outline:hover {
+  background-color: var(--c-white);
+  color: var(--c-charcoal);
+}
+
+/* Hero */
+.hero {
   position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-white);
+  overflow: hidden;
+  text-align: center;
 }
 
-/* absolute, full-bleed hero media centered vertically within the hero wrapper */
-.hero-media-abs {
+.hero-bg {
   position: absolute;
-  /* bleed to full viewport width from the hero column */
-  left: 50%;
-  /* shift 120px left total (50 + 70) and expand width to remain full-bleed */
-  margin-left: calc(-50vw - 120px);
-  width: calc(100vw + 120px);
-  height: calc(var(--hero-video-h, clamp(360px, 45vh, 520px)) + 90px);
-  /* push the video up so it sits behind the H1 but does NOT overlap the location buttons
-     Use a configurable variable so you can tweak without changing CSS rules. */
-  --hero-video-top: var(--hero-video-top, clamp(40px, 10vh, 140px));
-  top: calc(var(--hero-video-top, clamp(40px, 10vh, 140px)) - 60px);
-  z-index: 10; /* above buttons */
-  pointer-events: none;
-  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
-.hero-media-abs video {
-  position: absolute;
-  inset: 0;
+
+.hero-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
 }
-.hero-media-overlay {
+
+.hero-overlay {
   position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.32);
-  z-index: 11;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
 }
 
-/* stacking: H1 above the overlay/video; location buttons below the video */
-.wrapper.hero h1 { position: relative; z-index: 20; }
-.location-row { position: relative; z-index: 5; }
-
-/* hero video rules removed — restored original layout per user request */
-/* center hero full-screen (vertical + horizontal) */
-.wrapper.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center;     /* horizontal center */
-  gap: 2rem;               /* space between title and buttons */
-  padding: 2rem 1rem;      /* breathing room on small screens */
-  box-sizing: border-box;
+.hero-content {
+  max-width: 800px;
+  padding: 0 20px;
+  z-index: 1;
 }
 
-/* row: keep buttons side-by-side with gap */
-.location-row {
+.hero h1 {
+  margin-bottom: 20px;
+}
+
+.hero .eyebrow {
+  display: block;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--c-yellow);
+  margin-bottom: 10px;
+}
+
+.hero .title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  margin-bottom: 40px;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.hero-btns {
   display: flex;
-  gap: 2rem;       /* adjust horizontal spacing */
+  gap: 20px;
   justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
 }
 
-/* ensure title is centered and readable */
-.wrapper.hero h1 {
-  text-align: center;
-  margin: 0;
-  max-width: 60ch;
-  line-height: 1.05;
-}
-.wrapper.hero h1 .site-name {
-  color: #ffffff; /* white */
-  font-weight: 300; /* lighter weight for 'Simply South' */
-  text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+/* Wave Divider */
+.wave-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
 }
 
-.wrapper.hero h1 .site-tagline {
-  color: var(--c-yellow-100); /* yellow 100 */
-}
-/* center "A Taste of Simply South" section */
-.wrapper:not(.hero) h2 {
-  text-align: center;
-  margin: 2rem auto 0.6rem;
-}
-
-/* Quick-row of three image buttons (tweakable) */
-.quick-row { width: 100%; padding: 1rem 0; box-sizing: border-box; }
-.quick-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px; /* same tiny gap horizontally and vertically */
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.quick-button {
+.wave-divider svg {
   position: relative;
   display: block;
-  width: 100%;
-  min-height: 160px;
-  color: #fff;
-  text-decoration: none;
-  overflow: hidden;
-  border: 0; /* clean edges */
-}
-.quick-button .qb-bg {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center center;
-  transition: transform 0.45s ease;
-  filter: brightness(0.55); /* match location thumbnails darkened look */
-}
-.quick-button::before {
-  content: ""; position: absolute; inset: 0;
-  background: rgba(0,0,0,0.46); transition: background 0.28s ease; pointer-events: none;
-}
-.qb-text { position: relative; z-index: 2; height: 100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 1rem; }
-.qb-title { font-family: 'Lora', serif; font-weight:700; letter-spacing:0.04em; font-size: clamp(18px, 2.6vw, 28px); text-transform:uppercase; display:block; }
-.qb-sub { font-family: 'Lora', serif; font-style: italic; font-weight:400; display:block; margin-top:0.4rem; font-size: clamp(12px, 1.6vw, 16px); line-height:1.12; color: rgba(255,255,255,0.95); }
-
-/* Hover: zoom background slightly and darken overlay */
-.quick-button:hover .qb-bg, .quick-button:focus .qb-bg { transform: scale(1.06); }
-.quick-button:hover::before, .quick-button:focus::before { background: rgba(0,0,0,0.62); }
-/* Active / pressed state: darker overlay so text pops more */
-.quick-button:active::before,
-.quick-button:focus-visible::before {
-  background: rgba(0,0,0,0.72);
+  width: calc(100% + 1.3px);
+  height: 100px;
 }
 
-/* map backgrounds */
-.btn-aarambham .qb-bg { background-image: url('/images/aarambham.jpg'); }
-.btn-amogham .qb-bg { background-image: url('/images/amogham.jpg'); }
-.btn-ruchikaram .qb-bg { background-image: url('/images/ruchikaram.jpg'); }
-.btn-ascharyam .qb-bg { background-image: url('/images/asch.jpg'); }
-.btn-adbhutham .qb-bg { background-image: url('/images/ambhutham.jpg'); }
-.btn-amrutham .qb-bg { background-image: url('/images/amrut.jpg'); }
-
-/* Responsive: tablet -> 2 columns, mobile -> 1 column */
-@media (max-width: 900px) {
-  .quick-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .quick-button { min-height: 180px; }
-}
-@media (max-width: 700px) {
-  .quick-buttons { grid-template-columns: 1fr; }
+.wave-divider .shape-fill {
+  fill: var(--c-white);
 }
 
-.wrapper:not(.hero) p {
+/* Section Common */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  margin-bottom: 30px;
+  color: var(--c-charcoal);
+}
+
+.section-title.centered {
   text-align: center;
-  max-width: 70ch;
-  margin: 0 1rem 2rem;
+  margin-bottom: 60px;
 }
-/* center the "A Taste of" section vertically & horizontally */
-.wrapper:not(.hero) {
-  min-height: 60vh;                 /* centers the section in the viewport */
+
+.bg-floral {
+  background-image: url('images/vecteezy_floral-background-with-paisley-and-indian-florals-damask_23797434-1.jpg');
+  background-size: 800px;
+  background-repeat: repeat;
+  background-color: var(--c-cream);
+  /* Much lighter opacity to match inspo */
+  opacity: 0.8;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-floral::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Heavy cream gradient to wash out the pattern */
+  background: radial-gradient(circle, rgba(253, 248, 235, 0.85) 0%, rgba(253, 248, 235, 0.95) 100%);
+  z-index: 1;
+}
+
+.bg-floral .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Media Section */
+.as-seen-on {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.as-seen-on .section-title {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: var(--c-charcoal);
+}
+
+.section-tag {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: var(--c-charcoal-light);
+  opacity: 0.7;
+}
+
+.logo-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+  filter: grayscale(1) opacity(0.5);
+  transition: 0.5s ease;
+}
+
+.logo-strip:hover {
+  filter: grayscale(0) opacity(1);
+}
+
+.logo-strip img {
+  height: 35px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.btn-read-more {
+  display: inline-block;
+  background-color: var(--c-yellow);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.btn-read-more:hover {
+  background-color: var(--c-yellow-dark);
+}
+
+/* About */
+.about {
+  padding: var(--section-padding);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #555;
+  max-width: 600px;
+}
+
+.btn-text {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-charcoal);
+  border-bottom: 2px solid var(--c-yellow);
+  padding-bottom: 5px;
+}
+
+.btn-text:hover {
+  color: var(--c-yellow-dark);
+}
+
+.about-image {
+  position: relative;
+}
+
+.reveal-img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 20px 20px 0 var(--c-cream);
+}
+
+.border-art {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 150px;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* Locations Section Updated */
+.locations {
+  padding: var(--section-padding);
+}
+
+.locations .section-title {
+  font-size: 3rem;
+  margin-bottom: 60px;
+  color: var(--c-charcoal);
+}
+
+.locate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.location-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;          /* vertical centering */
-  align-items: center;              /* horizontal centering */
-  padding: 2rem 1rem;
-  box-sizing: border-box;
+  gap: 40px;
+  padding-top: 20px;
 }
 
-/* bigger gap between the two lines of the H2 */
-.wrapper:not(.hero) .about-title .line2 {
-  display: block;
-  margin-top: 0.9rem;               /* increase line-break gap */
+.location-entry {
+  padding: 5px 15px;
+  transition: 0.3s;
 }
 
-/* center and constrain the paragraph under the H2 */
-.wrapper:not(.hero) p {
-  text-align: center;
-  max-width: 70ch;
-  margin-top: 1.25rem;              /* space between H2 and paragraph */
-}
-/* make "Simply South" brown and center the about paragraph in column 2 */
-.wrapper:not(.hero) .about-title .line2 {
-  color: var(--c-brown);
+.location-entry.active {
+  border: 2px solid var(--c-red);
+  border-radius: 8px;
+  background: rgba(168, 28, 28, 0.02);
 }
 
-.wrapper:not(.hero) {
-  /* keep this section centered in the layout column */
-  min-height: 60vh;
-  display: grid;
-  align-items: center; /* vertical centering */
-  justify-items: center; /* centers direct children in the column */
-  padding: 2rem 1rem;
-  box-sizing: border-box;
+.location-entry h3 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: var(--c-charcoal);
 }
 
-.wrapper:not(.hero) p {
-  justify-self: center; /* place paragraph in middle of column */
-  text-align: center;
-  max-width: 70ch;
-  margin-top: 1.25rem;
+.location-entry p {
+  font-size: 0.9rem;
+  color: var(--c-red);
+  letter-spacing: 0.05em;
 }
-/* keep h3 left-aligned (don’t center) */
-.wrapper:not(.hero) h3 {
-  justify-self: start;
-  text-align: left;
+
+.map-container {
+  position: relative;
+  padding: 20px;
+}
+
+.map-frame {
+  background: #f4eee0;
+  padding: 60px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.map-mandala {
   width: 100%;
-  margin: 0;
-}
-.wrapper:not(.hero) h3 {
-grid-column: 2;
-justify-self: start;
-margin-left: 1rem; /* reduce/increase to move it closer/further */
-}
-
-/* side images only for the about section (columns 1 & 3) */
-.wrapper.about {
-position: relative;
+  aspect-ratio: 1/1;
+  background: white;
+  /* Creating a star/mandala shape with clip-path */
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.05);
 }
 
-/* make the images sit in the grid gutters (override default grid-column:2) */
-.wrapper.about > .side-art {
-display: block;
-width: clamp(80px, 8vw, 160px); /* adjust size */
-height: auto;
-pointer-events: none;
-opacity: 0.95;
+/* Alternative Mandala shape using a masks/background if possible, but clip-path is safer for now */
+.map-mandala {
+  clip-path: polygon(50% 0%, 65% 15%, 85% 15%, 85% 35%, 100% 50%, 85% 65%, 85% 85%, 65% 85%, 50% 100%, 35% 85%, 15% 85%, 15% 65%, 0% 50%, 15% 35%, 15% 15%, 35% 15%);
+  background-image: url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i14!2i3954!3i6666!2m3!1e0!2sm!3i666666666!3m8!2sen!2sus!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i1347507');
+  background-size: cover;
+  background-position: center;
 }
 
-/* left in column 1 */
-.wrapper.about > .side-left {
-grid-column: 1;
-justify-self: start;
-align-self: start;
-margin-top: 1.5rem;
+.map-pin {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: var(--c-red);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(168, 28, 28, 0.4);
+  border: 4px solid white;
+  z-index: 10;
 }
 
-/* right in column 3 */
-.wrapper.about > .side-right {
-grid-column: 3;
-justify-self: end;
-align-self: start;
-margin-top: 1.5rem;
+.map-label {
+  position: absolute;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
 }
 
-/* hide on small screens */
-@media (max-width: 900px) {
-.wrapper.about > .side-art { display: none; }
+.label-1 {
+  top: 20%;
+  left: 30%;
 }
+
+.label-2 {
+  bottom: 20%;
+  right: 25%;
 }
 
-@layer layout {
-  .wrapper {
-    display: grid;
-    grid-template-columns: 50px 1fr 50px;
+.label-3 {
+  bottom: 40%;
+  left: 20%;
+}
 
-    > * {
-      grid-column: 2;
-    }
-
-    > .fullbleed {
-      grid-column: 1 / -1;
-    }
-
-    @media (width >= calc(700 / 16 * 1rem)) {
-      grid-template-columns: 100px 1fr 100px;
-    }
-    @media (width >= calc(1100 / 16 * 1rem)) {
-      grid-template-columns: 1fr min(100%, 1110px) 1fr;
-    }
-  }
-  
-  /* place header content in column 2 and give the logo some space from the top */
-header {
+.location-grid {
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
-  padding-top: 1.25rem; /* adjust how far the logo dips */
-  padding-bottom: 0.5rem;
-}
-header > * {
-  grid-column: 2;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
-@media (min-width: 43.75rem) {
-  header { grid-template-columns: 100px 1fr 100px; }
-}
-@media (min-width: 68.75rem) {
-  header { grid-template-columns: 1fr min(100%, 1110px) 1fr; }
+.location-card {
+  background-color: var(--c-charcoal-light);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.4s ease;
 }
 
+.location-card:hover {
+  transform: translateY(-10px);
+}
+
+.card-img {
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+
+.location-card:hover .card-img img {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 30px;
+}
+
+.card-content h3 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  margin-bottom: 10px;
+  color: var(--c-yellow);
+}
+
+.card-content p {
+  margin-bottom: 25px;
+  opacity: 0.8;
+  min-height: 3em;
+}
+
+.card-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.card-btns .btn-pill {
+  padding: 10px 15px;
+  font-size: 0.8rem;
+  flex: 1;
+  text-align: center;
+}
+
+.upcoming-locations {
+  margin-top: 60px;
+  text-align: center;
+  padding: 30px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.upcoming-locations p {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--c-yellow);
+}
+
+/* Specialties */
+.specialties {
+  padding: var(--section-padding);
+}
+
+.specialty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.specialty-item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 300px;
+}
+
+.specialty-img {
+  width: 100%;
+  height: 100%;
+}
+
+.specialty-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s ease;
+}
+
+.specialty-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: var(--c-white);
+}
+
+.specialty-overlay h3 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.specialty-item:hover .specialty-img img {
+  transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+  padding: 80px 0 40px;
+  background-color: var(--c-charcoal);
+  color: var(--c-white);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 60px;
+}
+
+.footer-brand p {
+  margin-top: 20px;
+  opacity: 0.6;
+  max-width: 250px;
+}
+
+.footer-links h4,
+.footer-social h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin-bottom: 25px;
+  color: var(--c-yellow);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  opacity: 0.7;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  color: var(--c-yellow);
+  padding-left: 5px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 30px;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+.socials {
+  display: flex;
+  gap: 20px;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-in-delay {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards 0.5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  header nav {
+    display: none;
+    /* Mobile menu needed but keeping it simple for now */
+  }
 }
