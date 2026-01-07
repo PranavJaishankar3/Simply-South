@@ -1,0 +1,599 @@
+@layer fonts {
+  /* lora-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/lora-v37-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+@layer components {
+  .menu-grid-section {
+    padding: 2rem 0 4rem; /* remove side padding so we can extend to viewport edges */
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 10px; /* row-gap 6px, column-gap 10px to bring rows closer */
+    max-width: 1110px; /* center the grid and keep uniform tile sizing */
+      width: 100vw;
+      height: calc(var(--hero-video-h, clamp(360px, 45vh, 520px)) + 30px);
+      /* push the video down slightly so it does not overlap the buttons */
+      --hero-video-top: var(--hero-video-top, clamp(40px, 10vh, 140px));
+      top: calc(var(--hero-video-top, clamp(40px, 10vh, 140px)) - 50px);
+  }
+
+  .menu-tile {
+    position: relative;
+    aspect-ratio: 16 / 7; /* wider rectangle */
+    min-height: clamp(160px, 18vw, 320px);
+    background-size: cover;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+    border: 0; /* remove per-tile borders to ensure equal widths */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  .menu-tile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.62));
+    pointer-events: none;
+  }
+
+  .tile-text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.75rem;
+    gap: 6px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .title {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    font-size: clamp(18px, 2.2vw, 28px);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    display: block;
+    margin: 0;
+  }
+
+  .subtitle {
+    font-style: italic;
+    margin: 0;
+    font-size: clamp(12px, 1.6vw, 16px);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.45);
+  }
+
+  .menu-tile:focus { outline: 3px solid var(--c-green-100); outline-offset: 3px; }
+
+  .menu-tile:hover::before,
+  .menu-tile:focus::before {
+    background: rgba(0,0,0,0.62);
+  }
+
+  .menu-tile:active::before,
+  .menu-tile:focus-visible::before {
+    background: rgba(0,0,0,0.72);
+  }
+
+  /* map tiles to images in the repo */
+  .tile-aarambham { background-image: url('/images/aarambham.jpg'); }
+  .tile-amogham { background-image: url('/images/amogham.jpg'); }
+  .tile-ruchikaram { background-image: url('/images/ruchikaram.jpg'); }
+  .tile-ascharyam { background-image: url('/images/asch.jpg'); }
+  .tile-adbhutham { background-image: url('/images/ambhutham.jpg'); }
+  .tile-amrutham { background-image: url('/images/amrut.jpg'); }
+
+  @media (max-width: 800px) {
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 460px) {
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-tile { border-width: 4px; }
+  }
+}
+/* lora-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/lora-v37-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/lora-v37-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/lora-v37-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+}
+
+@layer colors {
+  :root {
+  --c-yellow-100: #fcc12f;
+  --c-yellow-500: #fdf3da;
+  --c-green-100: #106935;
+  --c-green-500: #91bc66;
+  --c-brown: #6e341b;
+  --c-black: #282727;
+  --c-white: #ffffff;
+  --color-background-dark: var(--c-green-100);
+  --color-background-light: var(--c-yellow-500);
+  --color-text-light: var(--c-white);
+  --color-text-dark: var(--c-black);
+  }
+}
+
+@layer typography {
+  :root {
+    --fs-80: calc(80 / 16 * 1rem);
+    --fs-48: calc(48 / 16 * 1rem);
+    --fs-32: calc(32 / 16 * 1rem);
+    --fs-24: calc(24 / 16 * 1rem);
+    --fs-18: calc(18 / 16 * 1rem);
+    --fs-16: calc(16 / 16 * 1rem);
+    --font-size-h1: var(--fs-32);
+    --font-size-h2: var(--fs-32);
+    --font-size-h3: var(--fs-24);
+    --font-size-p: var(--fs-16);
+    --font-size-p-sm: var(--fs-16);
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      --font-size-h1: var(--fs-48);
+      --font-size-h2: var(--fs-48);
+      --font-sze-p: var(--fs-20);
+    }
+
+    @media (width >= calc(1100 / 16 * 1rem)) {
+      --font-size-h1: var(--fs-80);
+      
+    }
+  }
+
+  h1{
+    font-size: var(--font-size-h1);
+    font-weight: 500;
+    letter-spacing: -0.0125em;
+    line-height: 1;
+    }
+
+  h2{
+    font-size: var(--font-size-h2);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  h3{
+    font-size: var(--font-size-h3);
+    font-weight: 500;
+    line-height: calc(24 / 20);
+  }
+
+  p {
+    font-size: var(--font-size-p);
+    font-weight: 400;
+    line-height: calc(28 / 16);
+
+    &.small {
+      font-size: var(--font-size-p-sm);
+    }
+  }
+}
+
+@layer global {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* prevent any accidental horizontal scroll from full-bleed sections */
+  html, body { overflow-x: hidden; }
+
+  body {
+  margin: 0;
+  background: var(--color-background-light);
+  color: var(--color-text-dark);
+  font-family: 'Lora', serif;
+}
+
+  h1, h2, h3 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+/* hero: keep centered but tighten title-to-row spacing */
+.wrapper.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* much wider spacing between buttons, responsive */
+.location-row {
+  display: flex;
+  gap: clamp(3rem, 10vw, 8rem); /* makes spacing much larger on wide screens */
+  justify-content: center;
+  align-items: center;
+  margin-top: -0.5rem; /* lift row slightly */
+  transform: none;
+  flex-wrap: nowrap;
+}
+
+/* make images much bigger but responsive, keep aspect ratio */
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.location-thumb {
+  width: clamp(260px, 24vw, 520px); /* responsive size - much bigger on desktop */
+  aspect-ratio: 160 / 61;          /* preserves original shape */
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  filter: brightness(0.55); /* keep darkened so white text reads well */
+}
+
+/* keep overlay text centered */
+.button-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--c-white);
+  font-weight: 600;
+  text-align: center;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  white-space: nowrap;
+}
+
+/* small-screen fallback */
+@media (max-width: 600px) {
+  .location-row { gap: 1rem; flex-wrap: wrap; margin-top: 0; }
+  .location-thumb { width: 160px; aspect-ratio: 160 / 61; }
+}
+
+/* Optional stronger overlay behind text for extra contrast */
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+/* center the hero title */
+.wrapper.hero h1 {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+/* make the hero wrapper a positioned container for absolute media */
+.wrapper.hero {
+  position: relative;
+}
+
+/* absolute, full-bleed hero media centered vertically within the hero wrapper */
+.hero-media-abs {
+  position: absolute;
+  /* bleed to full viewport width from the hero column */
+  left: 50%;
+  /* shift 120px left total (50 + 70) and expand width to remain full-bleed */
+  margin-left: calc(-50vw - 120px);
+  width: calc(100vw + 120px);
+  height: calc(var(--hero-video-h, clamp(360px, 45vh, 520px)) + 90px);
+  /* push the video up so it sits behind the H1 but does NOT overlap the location buttons
+     Use a configurable variable so you can tweak without changing CSS rules. */
+  --hero-video-top: var(--hero-video-top, clamp(40px, 10vh, 140px));
+  top: calc(var(--hero-video-top, clamp(40px, 10vh, 140px)) - 60px);
+  z-index: 10; /* above buttons */
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-media-abs video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.hero-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.32);
+  z-index: 11;
+  pointer-events: none;
+}
+
+/* stacking: H1 above the overlay/video; location buttons below the video */
+.wrapper.hero h1 { position: relative; z-index: 20; }
+.location-row { position: relative; z-index: 5; }
+
+/* hero video rules removed — restored original layout per user request */
+/* center hero full-screen (vertical + horizontal) */
+.wrapper.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  gap: 2rem;               /* space between title and buttons */
+  padding: 2rem 1rem;      /* breathing room on small screens */
+  box-sizing: border-box;
+}
+
+/* row: keep buttons side-by-side with gap */
+.location-row {
+  display: flex;
+  gap: 2rem;       /* adjust horizontal spacing */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* ensure title is centered and readable */
+.wrapper.hero h1 {
+  text-align: center;
+  margin: 0;
+  max-width: 60ch;
+  line-height: 1.05;
+}
+.wrapper.hero h1 .site-name {
+  color: #ffffff; /* white */
+  font-weight: 300; /* lighter weight for 'Simply South' */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+}
+
+.wrapper.hero h1 .site-tagline {
+  color: var(--c-yellow-100); /* yellow 100 */
+}
+/* center "A Taste of Simply South" section */
+.wrapper:not(.hero) h2 {
+  text-align: center;
+  margin: 2rem auto 0.6rem;
+}
+
+/* Quick-row of three image buttons (tweakable) */
+.quick-row { width: 100%; padding: 1rem 0; box-sizing: border-box; }
+.quick-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px; /* same tiny gap horizontally and vertically */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.quick-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 160px;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  border: 0; /* clean edges */
+}
+.quick-button .qb-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center center;
+  transition: transform 0.45s ease;
+  filter: brightness(0.55); /* match location thumbnails darkened look */
+}
+.quick-button::before {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(0,0,0,0.46); transition: background 0.28s ease; pointer-events: none;
+}
+.qb-text { position: relative; z-index: 2; height: 100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 1rem; }
+.qb-title { font-family: 'Lora', serif; font-weight:700; letter-spacing:0.04em; font-size: clamp(18px, 2.6vw, 28px); text-transform:uppercase; display:block; }
+.qb-sub { font-family: 'Lora', serif; font-style: italic; font-weight:400; display:block; margin-top:0.4rem; font-size: clamp(12px, 1.6vw, 16px); line-height:1.12; color: rgba(255,255,255,0.95); }
+
+/* Hover: zoom background slightly and darken overlay */
+.quick-button:hover .qb-bg, .quick-button:focus .qb-bg { transform: scale(1.06); }
+.quick-button:hover::before, .quick-button:focus::before { background: rgba(0,0,0,0.62); }
+/* Active / pressed state: darker overlay so text pops more */
+.quick-button:active::before,
+.quick-button:focus-visible::before {
+  background: rgba(0,0,0,0.72);
+}
+
+/* map backgrounds */
+.btn-aarambham .qb-bg { background-image: url('/images/aarambham.jpg'); }
+.btn-amogham .qb-bg { background-image: url('/images/amogham.jpg'); }
+.btn-ruchikaram .qb-bg { background-image: url('/images/ruchikaram.jpg'); }
+.btn-ascharyam .qb-bg { background-image: url('/images/asch.jpg'); }
+.btn-adbhutham .qb-bg { background-image: url('/images/ambhutham.jpg'); }
+.btn-amrutham .qb-bg { background-image: url('/images/amrut.jpg'); }
+
+/* Responsive: tablet -> 2 columns, mobile -> 1 column */
+@media (max-width: 900px) {
+  .quick-buttons { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .quick-button { min-height: 180px; }
+}
+@media (max-width: 700px) {
+  .quick-buttons { grid-template-columns: 1fr; }
+}
+
+.wrapper:not(.hero) p {
+  text-align: center;
+  max-width: 70ch;
+  margin: 0 1rem 2rem;
+}
+/* center the "A Taste of" section vertically & horizontally */
+.wrapper:not(.hero) {
+  min-height: 60vh;                 /* centers the section in the viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;          /* vertical centering */
+  align-items: center;              /* horizontal centering */
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* bigger gap between the two lines of the H2 */
+.wrapper:not(.hero) .about-title .line2 {
+  display: block;
+  margin-top: 0.9rem;               /* increase line-break gap */
+}
+
+/* center and constrain the paragraph under the H2 */
+.wrapper:not(.hero) p {
+  text-align: center;
+  max-width: 70ch;
+  margin-top: 1.25rem;              /* space between H2 and paragraph */
+}
+/* make "Simply South" brown and center the about paragraph in column 2 */
+.wrapper:not(.hero) .about-title .line2 {
+  color: var(--c-brown);
+}
+
+.wrapper:not(.hero) {
+  /* keep this section centered in the layout column */
+  min-height: 60vh;
+  display: grid;
+  align-items: center; /* vertical centering */
+  justify-items: center; /* centers direct children in the column */
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.wrapper:not(.hero) p {
+  justify-self: center; /* place paragraph in middle of column */
+  text-align: center;
+  max-width: 70ch;
+  margin-top: 1.25rem;
+}
+/* keep h3 left-aligned (don’t center) */
+.wrapper:not(.hero) h3 {
+  justify-self: start;
+  text-align: left;
+  width: 100%;
+  margin: 0;
+}
+.wrapper:not(.hero) h3 {
+grid-column: 2;
+justify-self: start;
+margin-left: 1rem; /* reduce/increase to move it closer/further */
+}
+
+/* side images only for the about section (columns 1 & 3) */
+.wrapper.about {
+position: relative;
+}
+
+/* make the images sit in the grid gutters (override default grid-column:2) */
+.wrapper.about > .side-art {
+display: block;
+width: clamp(80px, 8vw, 160px); /* adjust size */
+height: auto;
+pointer-events: none;
+opacity: 0.95;
+}
+
+/* left in column 1 */
+.wrapper.about > .side-left {
+grid-column: 1;
+justify-self: start;
+align-self: start;
+margin-top: 1.5rem;
+}
+
+/* right in column 3 */
+.wrapper.about > .side-right {
+grid-column: 3;
+justify-self: end;
+align-self: start;
+margin-top: 1.5rem;
+}
+
+/* hide on small screens */
+@media (max-width: 900px) {
+.wrapper.about > .side-art { display: none; }
+}
+}
+
+@layer layout {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+
+    > * {
+      grid-column: 2;
+    }
+
+    > .fullbleed {
+      grid-column: 1 / -1;
+    }
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      grid-template-columns: 100px 1fr 100px;
+    }
+    @media (width >= calc(1100 / 16 * 1rem)) {
+      grid-template-columns: 1fr min(100%, 1110px) 1fr;
+    }
+  }
+  
+  /* place header content in column 2 and give the logo some space from the top */
+header {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  padding-top: 1.25rem; /* adjust how far the logo dips */
+  padding-bottom: 0.5rem;
+}
+header > * {
+  grid-column: 2;
+}
+
+@media (min-width: 43.75rem) {
+  header { grid-template-columns: 100px 1fr 100px; }
+}
+@media (min-width: 68.75rem) {
+  header { grid-template-columns: 1fr min(100%, 1110px) 1fr; }
+}
+
+}
