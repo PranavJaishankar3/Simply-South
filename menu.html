@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the Simply South Menu — Authentic Indian Vegetarian Flavors.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Menu — Simply South</title>
+    <style>
+        .menu-hero {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/aarambham.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .menu-section {
+            padding: 60px 0;
+        }
+
+        .menu-category-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--c-yellow);
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--c-yellow);
+            display: inline-block;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item h3 {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .menu-item .price {
+            color: var(--c-red);
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+
+        .menu-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .nav-inner {
+            background: var(--c-charcoal);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav-inner">
+        <div class="header-container">
+            <a href="main.html" class="logo">
+                <img src="images/logo_yellow.png" alt="Simply South Logo" width="100">
+            </a>
+            <nav>
+                <a href="main.html">Home</a>
+                <a href="main.html#about">About</a>
+                <a href="menu.html">Menu</a>
+                <a href="main.html#locations">Locations</a>
+                <a href="https://order.toasttab.com/online/simplysouthfrisco" class="btn-pill btn-yellow"
+                    target="_blank">Order Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="menu-hero">
+        <div class="container">
+            <h1 class="fade-in">Our Menu</h1>
+            <p class="fade-in-delay">Discover the soul of Southern India through our authentic vegetarian dishes.</p>
+        </div>
+    </div>
+
+    <main class="bg-floral">
+        <div class="container">
+            <div id="menu-content">
+                <!-- Data will be injected here by script.js -->
+                <div style="text-align: center; padding: 100px;">
+                    <p>Loading our delicious offerings...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo_yellow.png" alt="Simply South Logo" width="100">
+                    <p>Authentic Indian Vegetarian</p>
+                </div>
+                <!-- ... other links ... -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

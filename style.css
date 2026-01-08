@@ -390,14 +390,24 @@ nav a:hover {
 }
 
 .location-entry {
-  padding: 5px 15px;
+  padding: 15px 20px;
   transition: 0.3s;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  margin-bottom: 15px;
+}
+
+.location-entry:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-left-color: var(--c-yellow);
 }
 
 .location-entry.active {
   border: 2px solid var(--c-red);
   border-radius: 8px;
   background: rgba(168, 28, 28, 0.02);
+  border-left-width: 2px;
+  /* Reset the left border for active state */
 }
 
 .location-entry h3 {
