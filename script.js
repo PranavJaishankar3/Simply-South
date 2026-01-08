@@ -34,18 +34,21 @@ const LOCATIONS = [
         name: "Irving, TX",
         address: "1001 MACARTHUR PARK DR, IRVING, TX 75063, USA",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=1001+MACARTHUR+PARK+DR,+IRVING,+TX+75063",
+        mapImage: "", // Uses default CSS background
         labels: ["MACARTHUR PK", "VALLEY VIEW", "LAS COLINAS"]
     },
     {
         name: "Frisco, TX",
         address: "8250 STATE HWY 121, FRISCO, TX 75034, USA",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=8250+STATE+HWY+121,+FRISCO,+TX+75034",
-        labels: ["STONEBRIAR", "HWY 121", "LEGACY"]
+        mapImage: "images/friscomap.png",
+        labels: ["HWY 121", "STONEBRIAR", "SAM RAYBURN"]
     },
     {
         name: "Warrenville, IL",
         address: "28258 DIEHL RD, WARRENVILLE, IL 60555, USA",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=28258+DIEHL+RD,+WARRENVILLE,+IL+60555",
+        mapImage: "images/warrenvillemap.png",
         labels: ["DIEHL RD", "I-88", "CANTERA"]
     }
 ];
@@ -98,15 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 mapLabels[2].textContent = data.labels[2];
             }
 
-            // Panning effect (simulate moving to a new area)
-            const offsets = [
-                'center',
-                'top left',
-                'bottom right'
-            ];
+            // Update map background image
             const mandala = document.querySelector('.map-mandala');
             if (mandala) {
-                mandala.style.backgroundPosition = offsets[index] || 'center';
+                if (data.mapImage) {
+                    // Use the specific map image for this location
+                    mandala.style.backgroundImage = `url('${data.mapImage}')`;
+                } else {
+                    // Default Irving map - use the Google Maps tile URL
+                    mandala.style.backgroundImage = "url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i14!2i3954!3i6666!2m3!1e0!2sm!3i666666666!3m8!2sen!2sus!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i1347507')";
+                }
+                mandala.style.backgroundSize = 'cover';
+                mandala.style.backgroundPosition = 'center';
             }
 
             // Update Link
@@ -129,5 +135,18 @@ document.addEventListener('DOMContentLoaded', () => {
         locationEntries.forEach((entry, index) => {
             entry.addEventListener('click', () => updateMap(index));
         });
+
+        // Map control buttons (buttons located next to the map)
+        const mapSwitchBtns = document.querySelectorAll('.map-switch-btn');
+        const keyToIndex = { irving: 0, frisco: 1, warrenville: 2 };
+        if (mapSwitchBtns.length > 0) {
+            mapSwitchBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const key = btn.dataset.key;
+                    const idx = keyToIndex[key];
+                    if (typeof idx === 'number') updateMap(idx);
+                });
+            });
+        }
     }
 });
