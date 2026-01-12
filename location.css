@@ -1,0 +1,247 @@
+.location-header {
+    background: var(--c-charcoal);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.location-hero {
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.location-hero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+}
+
+.location-hero .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.location-tag {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--c-yellow);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.location-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 6rem);
+    margin-bottom: 20px;
+}
+
+.location-hero .address {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.quick-actions {
+    padding: 80px 0;
+    margin-top: 0px;
+    position: relative;
+    z-index: 10;
+}
+
+.action-grid {
+    padding: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.action-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.action-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--c-yellow);
+}
+
+.action-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.action-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--c-charcoal);
+}
+
+.action-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.about-location {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.about-text-main {
+    font-size: 1.25rem;
+    color: #444;
+    max-width: 900px;
+    margin: 0 auto 30px;
+    line-height: 1.8;
+}
+
+.about-text-secondary {
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.chef-specials {
+    padding: 100px 0;
+}
+
+.specials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.special-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: 0.4s;
+}
+
+.special-card:hover {
+    transform: scale(1.05);
+}
+
+.special-img {
+    height: 250px;
+}
+
+.special-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.special-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.special-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.view-menu-cta {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.category-card {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.category-card:hover {
+    background: var(--c-yellow);
+    color: white;
+    transform: translateY(-5px);
+}
+
+.hours-location {
+    padding: 100px 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+}
+
+.info-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.hours-card ul {
+    list-style: none;
+    margin: 30px 0;
+}
+
+.hours-card li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.hours-note {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.map-placeholder {
+    height: 100%;
+    background: #fdf8eb;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    border: 2px dashed var(--c-yellow);
+}
+
+.map-cta {
+    margin-top: 20px;
+    font-weight: 600;
+    color: var(--c-yellow);
+}
+
+@media (max-width: 900px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}

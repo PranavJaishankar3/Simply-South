@@ -1,30 +1,159 @@
 // --- DATA ("The Backend") ---
 
 const MENU_DATA = {
+    "IDLY SPECIAL": {
+        subtitle: "Idly, Thatte Idly, Button/Chitti Idly",
+        items: [
+            { name: "Plain Idly", price: "", description: "" },
+            { name: "Ghee Idly", price: "", description: "" },
+            { name: "Bezawada Babai Podi Idly", price: "", description: "" },
+            { name: "Ghee Kaaram Fried Idly", price: "", description: "" },
+            { name: "Gunturu Idly", price: "", description: "" },
+            { name: "Nellore Ghee Kaaram Idly", price: "", description: "" },
+            { name: "Sambar Idly", price: "", description: "" },
+            { name: "Rasam Idly", price: "", description: "" },
+            { name: "Ulavacharu Idly", price: "", description: "" },
+            { name: "3 in 1 Idly", price: "", description: "1 plain, 1 Ghee Kaaram, 1 Gunturu" },
+            { name: "Plain Thatte Idly", price: "", description: "" },
+            { name: "Gunturu Thatte Idly", price: "", description: "" },
+            { name: "Nellore Ghee Kaaram Thatte Idly", price: "", description: "" },
+            { name: "Sambar Thatte Idly", price: "", description: "" },
+            { name: "3 in 1 Thatte Idly", price: "", description: "1 plain, 1 Ghee Kaaram, 1 Gunturu" },
+            { name: "Button Idly/ Chitti Idly", price: "", description: "" },
+            { name: "Ghee Kaaram Fried Button Idly", price: "", description: "" },
+            { name: "Tawa Button Idly", price: "", description: "" },
+            { name: "Gunturu Button Idly", price: "", description: "" },
+            { name: "Nellore Ghee Kaaram Button Idly", price: "", description: "" },
+            { name: "Sambar Button Idly", price: "", description: "" },
+            { name: "Rasam Button Idly", price: "", description: "" }
+        ]
+    },
+    "WADA": {
+        subtitle: "Lentil Donuts & Fritters",
+        items: [
+            { name: "Wada", price: "", description: "" },
+            { name: "Chitti Wada", price: "", description: "" },
+            { name: "Nellore Ghee Kaaram Wada", price: "", description: "" },
+            { name: "Gunta Ponganalu", price: "", description: "" },
+            { name: "Sambar Wada", price: "", description: "" },
+            { name: "Dahi Wada", price: "", description: "" },
+            { name: "3 in 1 Wada", price: "", description: "1 plain, 1 Nellore Ghee Kaaram, 1 Sambar" }
+        ]
+    },
+    "TIFFINS": {
+        subtitle: "Pongal, Upma, Puri & More",
+        items: [
+            { name: "Ghee Ven Pongal", price: "", description: "" },
+            { name: "Ghee Cashew Khara Ven Pongal", price: "", description: "" },
+            { name: "Ghee Mix Veg Upma", price: "", description: "" },
+            { name: "Tomato Bath", price: "", description: "" },
+            { name: "Jeedipappu Upma", price: "", description: "" },
+            { name: "Bisi Bele Bath", price: "", description: "" },
+            { name: "Special Bisi Bele Bath", price: "", description: "With MealMaker" },
+            { name: "Plain Uthappam", price: "", description: "" },
+            { name: "Mix Veg Uthappam", price: "", description: "" },
+            { name: "Onion Chilli Uthappam", price: "", description: "" },
+            { name: "Masala Uthappam", price: "", description: "" },
+            { name: "Nellore Ghee Kaaram Uthappam", price: "", description: "" },
+            { name: "3 in 1 Uthappam", price: "", description: "Mini Plain, Onion Chilli, Guntur Podi" },
+            { name: "Pullattu/Majjigattu", price: "", description: "" },
+            { name: "Ghee Kaaram Pullattu", price: "", description: "" },
+            { name: "Plain Dibbarotte", price: "", description: "25 mins cooking time" },
+            { name: "Puri with Aloo Bhaji", price: "", description: "" },
+            { name: "Puri with Chole", price: "", description: "" },
+            { name: "Bature with Chole", price: "", description: "" },
+            { name: "Malabar Parotta with Veg Kurma", price: "", description: "" }
+        ]
+    },
+    "DOSA BAZAAR": {
+        subtitle: "South Indian Crepes",
+        items: [
+            { name: "Plain Dosa", price: "", description: "" },
+            { name: "Masala Dosa", price: "", description: "" },
+            { name: "Ghee Roast Dosa", price: "", description: "" },
+            { name: "Onion Chilli Dosa", price: "", description: "" },
+            { name: "Mysore Masala Dosa", price: "", description: "" },
+            { name: "70mm Dosa", price: "", description: "" },
+            { name: "Davangere Benne Masala Dosa", price: "", description: "" },
+            { name: "Neyyi Kaaram Onion Dosa", price: "", description: "" },
+            { name: "Nellore Neyyi Kaaram Dosa", price: "", description: "" },
+            { name: "Ulavacharu Dosa", price: "", description: "" },
+            { name: "Steam Dosa/Megastar Dosa", price: "", description: "" },
+            { name: "Pesarattu Ghee Upma", price: "", description: "" },
+            { name: "Onion Ravva Masala Dosa", price: "", description: "" },
+            { name: "Paneer Tikka Dosa", price: "", description: "" },
+            { name: "Cheese Dosa", price: "", description: "" }
+        ]
+    },
     "AARAMBHAM": {
         subtitle: "Starters & Appetizers",
         items: [
-            { name: "Medhu Vada", price: "$8.49", description: "Crispy fried lentil donuts served with chutney and sambar." },
-            { name: "Guntur Idli", price: "$9.99", description: "Steamed rice cakes tossed in spicy Guntur podi and ghee." },
-            { name: "Onion Bhaji", price: "$7.99", description: "Crispy onion fritters seasoned with Indian spices." },
-            { name: "Mysore Bonda", price: "$8.99", description: "Crispy outside, fluffy inside lentil dumplings." }
+            { name: "Samosa (2 Pcs)", price: "", description: "" },
+            { name: "Baby Corn 65", price: "", description: "" },
+            { name: "Gobi Manchurian", price: "", description: "" },
+            { name: "Paneer Pasanda Bites", price: "", description: "" },
+            { name: "Chilli Mushroom", price: "", description: "" },
+            { name: "Crispy LotusRoot ChatPata", price: "", description: "" },
+            { name: "Karivepaku Paneer", price: "", description: "" },
+            { name: "Tandoori Veggie Chaaps", price: "", description: "" },
+            { name: "Paneer Tikka Kebab", price: "", description: "" }
         ]
     },
     "AMOGHAM": {
-        subtitle: "Entrees & Daal",
+        subtitle: "Main Course Entrees",
         items: [
-            { name: "Paneer Butter Masala", price: "$14.99", description: "Soft paneer cubes in a rich, creamy tomato-based gravy." },
-            { name: "Bagara Baingan", price: "$13.99", description: "Baby eggplants cooked in a sesame, peanut, and tamarind sauce." },
-            { name: "Dal Tadka", price: "$12.49", description: "Yellow lentils tempered with ghee, cumin, and garlic." },
-            { name: "Vegetable Kurma", price: "$13.49", description: "Seasonal veggies cooked in a coconut-based spiced gravy." }
+            { name: "Gutti Vankaya Curry", price: "", description: "" },
+            { name: "Paneer Butter Masala", price: "", description: "" },
+            { name: "Cashew Mushroom Masala", price: "", description: "" },
+            { name: "Veg Kheema Masala", price: "", description: "" },
+            { name: "Palak Paneer", price: "", description: "" },
+            { name: "Methi Chaman", price: "", description: "" },
+            { name: "Dal Makhni", price: "", description: "" },
+            { name: "Mamidikay Pappu (Mango Daal)", price: "", description: "" }
         ]
     },
     "RUCHIKARAM": {
         subtitle: "Biryanis & Pulao",
         items: [
-            { name: "Hyderabadi Veg Biryani", price: "$15.99", description: "Fragrant basmati rice slow-cooked with vegetables and aromatic spices." },
-            { name: "Jackfruit Biryani", price: "$16.99", description: "A unique biryani featuring tender jackfruit pieces." },
-            { name: "Paneer Pulao", price: "$14.49", description: "Mildly spiced rice cooked with marinated paneer cubes." }
+            { name: "Veg Dum Biryani", price: "", description: "" },
+            { name: "Paneer Tikka Biryani", price: "", description: "" },
+            { name: "Jackfruit Dum Pulao", price: "", description: "" },
+            { name: "Veg Kheema Biryani", price: "", description: "" },
+            { name: "Ulavacharu Paneer Biryani", price: "", description: "" },
+            { name: "Gongura Veg Biryani", price: "", description: "" },
+            { name: "Avakai Paneer Pulao", price: "", description: "" }
+        ]
+    },
+    "VIDESI RUCHULU": {
+        subtitle: "Indo-Chinese Specials",
+        items: [
+            { name: "Veg Fried Rice", price: "", description: "" },
+            { name: "Paneer Fried Rice", price: "", description: "" },
+            { name: "Schezwan Noodles", price: "", description: "" },
+            { name: "Veg Hakka Noodles", price: "", description: "" },
+            { name: "Impossible Veg Fried Rice", price: "", description: "" },
+            { name: "Impossible Veg Hakka Noodles", price: "", description: "" }
+        ]
+    },
+    "THALIS": {
+        subtitle: "Traditional Meals",
+        items: [
+            { name: "Weekday Lunch Thali", price: "", description: "Mon-Fri (12PM-3PM). Roti, Curry, Sambar, Rasam, Daal, Rice, Dessert." },
+            { name: "Weekend Bhojanam", price: "", description: "Sat-Sun (12PM-3PM). Unlimited South Indian Feast with Specials." },
+            { name: "South Indian Dinner Thali", price: "", description: "Everyday (7PM-Close). Poori, Veg Fry, Kurma, Bisi Bele Bath, Curd Rice, Dessert." },
+            { name: "North Indian Dinner Thali", price: "", description: "Everyday (7PM-Close). Naan, Paneer Butter Masala, Methi Chaman, Jeera Rice, Dessert." }
+        ]
+    },
+    "AMRUTHAM": {
+        subtitle: "Beverages & Desserts",
+        items: [
+            { name: "Filter Coffee", price: "", description: "" },
+            { name: "Ginger Pepper Tea", price: "", description: "" },
+            { name: "Mango Lassi", price: "", description: "" },
+            { name: "Signature Dry Fruit Falooda", price: "", description: "" },
+            { name: "Gulab Jamun with Ice Cream", price: "", description: "" },
+            { name: "Qubani Ka Meetha", price: "", description: "" },
+            { name: "Rasamalai", price: "", description: "" }
         ]
     }
 };
@@ -34,7 +163,7 @@ const LOCATIONS = [
         name: "Irving, TX",
         address: "1001 MACARTHUR PARK DR, IRVING, TX 75063, USA",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=1001+MACARTHUR+PARK+DR,+IRVING,+TX+75063",
-        mapImage: "", // Uses default CSS background
+        mapImage: "images/irvingmap.png",
         labels: ["MACARTHUR PK", "VALLEY VIEW", "LAS COLINAS"]
     },
     {
@@ -62,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let menuHTML = '';
         for (const [category, data] of Object.entries(MENU_DATA)) {
             menuHTML += `
-                <section class="menu-section" id="${category.toLowerCase()}">
+                <section class="menu-section" id="${category.toLowerCase().replace(/\s+/g, '-')}">
                     <h2 class="menu-category-title">${category}</h2>
                     <p class="section-tag">${data.subtitle}</p>
                     <div class="menu-grid">
