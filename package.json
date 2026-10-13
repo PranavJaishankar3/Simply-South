@@ -1,0 +1,15 @@
+{
+  "name": "simplysouth-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Simply South restaurant website. Static site; online ordering, rewards and accounts stay on Owner.com, reservations on Toast.",
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "node build.mjs --preview",
+    "serve": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

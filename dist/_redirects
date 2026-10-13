@@ -1,0 +1,10 @@
+# Friendly aliases
+/katy            /houston                      301
+/locations       /page/locations               301
+/reservations    /page/locations               301
+/reserve         /page/locations               301
+/franchise       /page/franchise               301
+/press           /page/press                   301
+/signature-club  /page/signature-club          301
+/rewards         /page/signature-club          301
+/about           /story                        301
